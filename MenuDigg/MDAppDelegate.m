@@ -10,9 +10,12 @@
 
 @implementation MDAppDelegate
 
+@synthesize statusMenu;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    NSLog(@"loaded");
 }
 
 - (void)awakeFromNib {
