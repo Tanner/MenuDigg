@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"Status"];
+    [statusItem setTitle:NSLocalizedString(@"STATUS_ITEM_TITLE", nil)];
     [statusItem setHighlightMode:YES];
 }
 

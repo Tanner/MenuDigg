@@ -17,6 +17,7 @@
 		C3C94C5617B2F552007E3E92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C94C3617B2F552007E3E92 /* Cocoa.framework */; };
 		C3C94C5E17B2F552007E3E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C5C17B2F552007E3E92 /* InfoPlist.strings */; };
 		C3C94C6117B2F552007E3E92 /* MenuDiggTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C6017B2F552007E3E92 /* MenuDiggTests.m */; };
+		C3C94C6D17B2F7E4007E3E92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C3C94C5D17B2F552007E3E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C3C94C5F17B2F552007E3E92 /* MenuDiggTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuDiggTests.h; sourceTree = "<group>"; };
 		C3C94C6017B2F552007E3E92 /* MenuDiggTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuDiggTests.m; sourceTree = "<group>"; };
+		C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				C3C94C4217B2F552007E3E92 /* main.m */,
 				C3C94C4417B2F552007E3E92 /* MenuDigg-Prefix.pch */,
 				C3C94C4517B2F552007E3E92 /* Credits.rtf */,
+				C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				C3C94C4117B2F552007E3E92 /* InfoPlist.strings in Resources */,
 				C3C94C4717B2F552007E3E92 /* Credits.rtf in Resources */,
 				C3C94C4D17B2F552007E3E92 /* MainMenu.xib in Resources */,
+				C3C94C6D17B2F7E4007E3E92 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
