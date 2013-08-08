@@ -29,12 +29,9 @@
     [statusItem setHighlightMode:YES];
     
     [statusMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
-    
-    [quitMenuItem setAction:@selector(quit)];
-    [preferencesMenuItem setAction:@selector(preferences)];
 }
 
-- (void)preferences {
+- (IBAction)preferences:(id)sender {
     if (preferencesWindow == nil) {
         preferencesWindow = [[MDPreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
@@ -43,7 +40,7 @@
     [preferencesWindow.window makeKeyAndOrderFront:self];
 }
 
-- (void)quit {
+- (IBAction)quit:(id)sender {
     [[NSApplication sharedApplication] terminate:nil];
 }
 
