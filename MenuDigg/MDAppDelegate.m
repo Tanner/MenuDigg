@@ -36,9 +36,7 @@
     [statusItem setMenu:statusMenu];
     [statusItem setTitle:NSLocalizedString(@"STATUS_ITEM_TITLE", nil)];
     [statusItem setHighlightMode:YES];
-    
-    [statusMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
-    
+        
     [self updateRefreshMenuItem];
 }
 
