@@ -8,12 +8,13 @@
 
 #import "MDAppDelegate.h"
 
+#import "MDPreferences.h"
 #import "MDPreferencesWindowController.h"
 
 @implementation MDAppDelegate
 
 @synthesize statusMenu;
-@synthesize separatorMenuItem, preferencesMenuItem, quitMenuItem;
+@synthesize separatorMenuItem, refreshMenuItem, preferencesMenuItem, quitMenuItem;
 
 @synthesize preferencesWindow;
 
@@ -23,6 +24,11 @@
     NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userDefaultsChanged:)
+                                                 name:NSUserDefaultsDidChangeNotification
+                                               object:nil];
 }
 
 - (void)awakeFromNib {
@@ -32,6 +38,18 @@
     [statusItem setHighlightMode:YES];
     
     [statusMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
+    
+    [self updateRefreshMenuItem];
+}
+
+- (void)userDefaultsChanged:(NSNotification *)notification {
+    [self updateRefreshMenuItem];
+}
+
+- (void)updateRefreshMenuItem {
+    NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
+    
+    [refreshMenuItem setHidden:updateInterval != MANUALLY];
 }
 
 - (IBAction)preferences:(id)sender {

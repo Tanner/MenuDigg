@@ -17,6 +17,7 @@
 @property (assign) IBOutlet NSMenu *statusMenu;
 
 @property (assign) IBOutlet NSMenuItem *separatorMenuItem;
+@property (assign) IBOutlet NSMenuItem *refreshMenuItem;
 @property (assign) IBOutlet NSMenuItem *preferencesMenuItem;
 @property (assign) IBOutlet NSMenuItem *quitMenuItem;
 

@@ -35,27 +35,36 @@
 			<object class="NSMenu" id="560932080">
 				<string key="NSTitle"/>
 				<array class="NSMutableArray" key="NSMenuItems">
+					<object class="NSMenuItem" id="465145678">
+						<reference key="NSMenu" ref="560932080"/>
+						<bool key="NSIsHidden">YES</bool>
+						<string key="NSTitle">Refresh</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSOnImage" id="169044642">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuCheckmark</string>
+						</object>
+						<object class="NSCustomResource" key="NSMixedImage" id="248862347">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuMixedState</string>
+						</object>
+					</object>
 					<object class="NSMenuItem" id="462378990">
 						<reference key="NSMenu" ref="560932080"/>
 						<string key="NSTitle">Preferences...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<object class="NSCustomResource" key="NSOnImage" id="171815450">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">NSMenuCheckmark</string>
-						</object>
-						<object class="NSCustomResource" key="NSMixedImage" id="683401777">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">NSMenuMixedState</string>
-						</object>
+						<reference key="NSOnImage" ref="169044642"/>
+						<reference key="NSMixedImage" ref="248862347"/>
 					</object>
 					<object class="NSMenuItem" id="784823661">
 						<reference key="NSMenu" ref="560932080"/>
 						<string key="NSTitle">Quit Digg</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="171815450"/>
-						<reference key="NSMixedImage" ref="683401777"/>
+						<reference key="NSOnImage" ref="169044642"/>
+						<reference key="NSMixedImage" ref="248862347"/>
 					</object>
 				</array>
 			</object>
@@ -113,6 +122,14 @@
 					</object>
 					<int key="connectionID">545</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">refreshMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="465145678"/>
+					</object>
+					<int key="connectionID">547</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -151,6 +168,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="462378990"/>
 							<reference ref="784823661"/>
+							<reference ref="465145678"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -164,6 +182,11 @@
 						<reference key="object" ref="784823661"/>
 						<reference key="parent" ref="560932080"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">546</int>
+						<reference key="object" ref="465145678"/>
+						<reference key="parent" ref="560932080"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -174,35 +197,23 @@
 				<string key="536.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="538.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="539.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="546.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">545</int>
+			<int key="maxID">547</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">MDAppDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="preferences:">id</string>
-						<string key="quit:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="preferences:">
-							<string key="name">preferences:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="quit:">
-							<string key="name">quit:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="preferencesMenuItem">NSMenuItem</string>
 						<string key="quitMenuItem">NSMenuItem</string>
+						<string key="refreshMenuItem">NSMenuItem</string>
 						<string key="separatorMenuItem">NSMenuItem</string>
 						<string key="statusMenu">NSMenu</string>
 					</dictionary>
@@ -213,6 +224,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="quitMenuItem">
 							<string key="name">quitMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="refreshMenuItem">
+							<string key="name">refreshMenuItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="separatorMenuItem">
