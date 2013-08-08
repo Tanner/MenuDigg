@@ -14,7 +14,7 @@
 @implementation MDAppDelegate
 
 @synthesize statusMenu;
-@synthesize separatorMenuItem, refreshMenuItem, preferencesMenuItem, quitMenuItem;
+@synthesize noStoriesMenuItem, separatorMenuItem, refreshMenuItem, preferencesMenuItem, quitMenuItem;
 
 @synthesize preferencesWindow;
 
