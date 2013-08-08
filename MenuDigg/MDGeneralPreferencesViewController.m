@@ -24,4 +24,8 @@
     return self;
 }
 
+- (IBAction)setUpdateInterval:(id)sender {
+    NSLog(@"%@", [sender selectedItem]);
+}
+
 @end

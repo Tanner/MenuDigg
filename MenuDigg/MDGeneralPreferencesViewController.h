@@ -10,4 +10,8 @@
 
 @interface MDGeneralPreferencesViewController : NSViewController
 
+@property (assign) IBOutlet NSPopUpButton *updateIntervalMenu;
+
+- (IBAction)setUpdateInterval:(id)sender;
+
 @end
