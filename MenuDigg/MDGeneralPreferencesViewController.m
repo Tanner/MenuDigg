@@ -8,11 +8,15 @@
 
 #import "MDGeneralPreferencesViewController.h"
 
+#import "MDPreferences.h"
+
 @interface MDGeneralPreferencesViewController ()
 
 @end
 
 @implementation MDGeneralPreferencesViewController
+
+@synthesize updateIntervalMenu;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

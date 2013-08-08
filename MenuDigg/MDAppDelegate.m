@@ -20,6 +20,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 - (void)awakeFromNib {
