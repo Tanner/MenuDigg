@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "MDPreferencesWindowController.h"
+
 @interface MDAppDelegate : NSObject {
     NSStatusItem *statusItem;
 }
@@ -17,5 +19,7 @@
 @property (assign) IBOutlet NSMenuItem *separatorMenuItem;
 @property (assign) IBOutlet NSMenuItem *preferencesMenuItem;
 @property (assign) IBOutlet NSMenuItem *quitMenuItem;
+
+@property (retain) MDPreferencesWindowController *preferencesWindow;
 
 @end

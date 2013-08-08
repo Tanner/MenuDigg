@@ -8,10 +8,14 @@
 
 #import "MDAppDelegate.h"
 
+#import "MDPreferencesWindowController.h"
+
 @implementation MDAppDelegate
 
 @synthesize statusMenu;
 @synthesize separatorMenuItem, preferencesMenuItem, quitMenuItem;
+
+@synthesize preferencesWindow;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -27,6 +31,16 @@
     [statusMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
     
     [quitMenuItem setAction:@selector(quit)];
+    [preferencesMenuItem setAction:@selector(preferences)];
+}
+
+- (void)preferences {
+    if (preferencesWindow == nil) {
+        preferencesWindow = [[MDPreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
+    }
+    
+    [preferencesWindow showWindow:nil];
+    [preferencesWindow.window makeKeyAndOrderFront:self];
 }
 
 - (void)quit {

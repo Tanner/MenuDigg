@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3834ED217B328FA00D99859 /* MDInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3834ED017B328FA00D99859 /* MDInfoViewController.m */; };
+		C3834ED317B328FA00D99859 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3834ED117B328FA00D99859 /* InfoView.xib */; };
 		C3C94C3717B2F552007E3E92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C94C3617B2F552007E3E92 /* Cocoa.framework */; };
 		C3C94C4117B2F552007E3E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C3F17B2F552007E3E92 /* InfoPlist.strings */; };
 		C3C94C4317B2F552007E3E92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C4217B2F552007E3E92 /* main.m */; };
@@ -18,6 +20,10 @@
 		C3C94C5E17B2F552007E3E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C5C17B2F552007E3E92 /* InfoPlist.strings */; };
 		C3C94C6117B2F552007E3E92 /* MenuDiggTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C6017B2F552007E3E92 /* MenuDiggTests.m */; };
 		C3C94C6D17B2F7E4007E3E92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */; };
+		C3C94C7017B30B4A007E3E92 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C6F17B30B4A007E3E92 /* PreferencesWindow.xib */; };
+		C3C94C7917B30FA9007E3E92 /* MDGeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C7717B30FA9007E3E92 /* MDGeneralPreferencesViewController.m */; };
+		C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */; };
+		C3C94C7E17B31043007E3E92 /* MDPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3834ECF17B328FA00D99859 /* MDInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDInfoViewController.h; sourceTree = "<group>"; };
+		C3834ED017B328FA00D99859 /* MDInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDInfoViewController.m; sourceTree = "<group>"; };
+		C3834ED117B328FA00D99859 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		C3C94C3317B2F552007E3E92 /* MenuDigg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuDigg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C94C3617B2F552007E3E92 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C3C94C3917B2F552007E3E92 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -51,6 +60,12 @@
 		C3C94C5F17B2F552007E3E92 /* MenuDiggTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuDiggTests.h; sourceTree = "<group>"; };
 		C3C94C6017B2F552007E3E92 /* MenuDiggTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuDiggTests.m; sourceTree = "<group>"; };
 		C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		C3C94C6F17B30B4A007E3E92 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		C3C94C7617B30FA9007E3E92 /* MDGeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGeneralPreferencesViewController.h; sourceTree = "<group>"; };
+		C3C94C7717B30FA9007E3E92 /* MDGeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGeneralPreferencesViewController.m; sourceTree = "<group>"; };
+		C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
+		C3C94C7B17B31043007E3E92 /* MDPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPreferencesWindowController.h; sourceTree = "<group>"; };
+		C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPreferencesWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +133,15 @@
 			children = (
 				C3C94C4817B2F552007E3E92 /* MDAppDelegate.h */,
 				C3C94C4917B2F552007E3E92 /* MDAppDelegate.m */,
+				C3C94C7617B30FA9007E3E92 /* MDGeneralPreferencesViewController.h */,
+				C3C94C7717B30FA9007E3E92 /* MDGeneralPreferencesViewController.m */,
+				C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */,
+				C3834ECF17B328FA00D99859 /* MDInfoViewController.h */,
+				C3834ED017B328FA00D99859 /* MDInfoViewController.m */,
+				C3834ED117B328FA00D99859 /* InfoView.xib */,
+				C3C94C7B17B31043007E3E92 /* MDPreferencesWindowController.h */,
+				C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */,
+				C3C94C6F17B30B4A007E3E92 /* PreferencesWindow.xib */,
 				C3C94C4B17B2F552007E3E92 /* MainMenu.xib */,
 				C3C94C3D17B2F552007E3E92 /* Supporting Files */,
 			);
@@ -232,6 +256,9 @@
 				C3C94C4717B2F552007E3E92 /* Credits.rtf in Resources */,
 				C3C94C4D17B2F552007E3E92 /* MainMenu.xib in Resources */,
 				C3C94C6D17B2F7E4007E3E92 /* Localizable.strings in Resources */,
+				C3C94C7017B30B4A007E3E92 /* PreferencesWindow.xib in Resources */,
+				C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */,
+				C3834ED317B328FA00D99859 /* InfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +295,9 @@
 			files = (
 				C3C94C4317B2F552007E3E92 /* main.m in Sources */,
 				C3C94C4A17B2F552007E3E92 /* MDAppDelegate.m in Sources */,
+				C3C94C7917B30FA9007E3E92 /* MDGeneralPreferencesViewController.m in Sources */,
+				C3C94C7E17B31043007E3E92 /* MDPreferencesWindowController.m in Sources */,
+				C3834ED217B328FA00D99859 /* MDInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +487,7 @@
 				C3C94C6617B2F552007E3E92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3C94C6717B2F552007E3E92 /* Build configuration list for PBXNativeTarget "MenuDiggTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +496,7 @@
 				C3C94C6917B2F552007E3E92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
