@@ -43,6 +43,11 @@
         NSLog(@"No stored stories found, retrieving fresh stories...");
         
         stories = [MDDigg retrieveStories];
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:stories];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:PreferencesStories];
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
         NSLog(@"Loading from stored stories...");
         
