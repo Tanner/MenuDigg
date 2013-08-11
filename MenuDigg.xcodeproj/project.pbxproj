@@ -11,6 +11,8 @@
 		C3834ED317B328FA00D99859 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3834ED117B328FA00D99859 /* InfoView.xib */; };
 		C3834ED717B3371B00D99859 /* MDPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C3834ED617B3371B00D99859 /* MDPreferences.m */; };
 		C3834EDA17B3D5AF00D99859 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3834ED817B3440300D99859 /* Defaults.plist */; };
+		C3834EDD17B46EE300D99859 /* MDDigg.m in Sources */ = {isa = PBXBuildFile; fileRef = C3834EDC17B46EE300D99859 /* MDDigg.m */; };
+		C3834F2317B5A72000D99859 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C3834F2217B5A72000D99859 /* libxml2.dylib */; };
 		C3C94C3717B2F552007E3E92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C94C3617B2F552007E3E92 /* Cocoa.framework */; };
 		C3C94C4117B2F552007E3E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C3F17B2F552007E3E92 /* InfoPlist.strings */; };
 		C3C94C4317B2F552007E3E92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C4217B2F552007E3E92 /* main.m */; };
@@ -26,6 +28,7 @@
 		C3C94C7917B30FA9007E3E92 /* MDGeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C7717B30FA9007E3E92 /* MDGeneralPreferencesViewController.m */; };
 		C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */; };
 		C3C94C7E17B31043007E3E92 /* MDPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */; };
+		C3DD151217B8040D009AFF7C /* MDDiggStory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD151117B8040D009AFF7C /* MDDiggStory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		C3834ED517B3371A00D99859 /* MDPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPreferences.h; sourceTree = "<group>"; };
 		C3834ED617B3371B00D99859 /* MDPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPreferences.m; sourceTree = "<group>"; };
 		C3834ED817B3440300D99859 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		C3834EDB17B46EE300D99859 /* MDDigg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDigg.h; sourceTree = "<group>"; };
+		C3834EDC17B46EE300D99859 /* MDDigg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDigg.m; sourceTree = "<group>"; };
+		C3834F2217B5A72000D99859 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		C3C94C3317B2F552007E3E92 /* MenuDigg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuDigg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C94C3617B2F552007E3E92 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C3C94C3917B2F552007E3E92 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -71,6 +77,8 @@
 		C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		C3C94C7B17B31043007E3E92 /* MDPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPreferencesWindowController.h; sourceTree = "<group>"; };
 		C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPreferencesWindowController.m; sourceTree = "<group>"; };
+		C3DD151017B8040D009AFF7C /* MDDiggStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDiggStory.h; sourceTree = "<group>"; };
+		C3DD151117B8040D009AFF7C /* MDDiggStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDiggStory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3834F2317B5A72000D99859 /* libxml2.dylib in Frameworks */,
 				C3C94C3717B2F552007E3E92 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +125,7 @@
 		C3C94C3517B2F552007E3E92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3834F2217B5A72000D99859 /* libxml2.dylib */,
 				C3C94C3617B2F552007E3E92 /* Cocoa.framework */,
 				C3C94C5417B2F552007E3E92 /* SenTestingKit.framework */,
 				C3C94C3817B2F552007E3E92 /* Other Frameworks */,
@@ -149,6 +159,10 @@
 				C3C94C7B17B31043007E3E92 /* MDPreferencesWindowController.h */,
 				C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */,
 				C3C94C6F17B30B4A007E3E92 /* PreferencesWindow.xib */,
+				C3834EDB17B46EE300D99859 /* MDDigg.h */,
+				C3834EDC17B46EE300D99859 /* MDDigg.m */,
+				C3DD151017B8040D009AFF7C /* MDDiggStory.h */,
+				C3DD151117B8040D009AFF7C /* MDDiggStory.m */,
 				C3C94C4B17B2F552007E3E92 /* MainMenu.xib */,
 				C3C94C3D17B2F552007E3E92 /* Supporting Files */,
 			);
@@ -308,6 +322,8 @@
 				C3C94C7E17B31043007E3E92 /* MDPreferencesWindowController.m in Sources */,
 				C3834ED217B328FA00D99859 /* MDInfoViewController.m in Sources */,
 				C3834ED717B3371B00D99859 /* MDPreferences.m in Sources */,
+				C3834EDD17B46EE300D99859 /* MDDigg.m in Sources */,
+				C3DD151217B8040D009AFF7C /* MDDiggStory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,11 +443,15 @@
 		C3C94C6517B2F552007E3E92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MenuDigg/MenuDigg-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MenuDigg/MenuDigg-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -439,11 +459,15 @@
 		C3C94C6617B2F552007E3E92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MenuDigg/MenuDigg-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MenuDigg/MenuDigg-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

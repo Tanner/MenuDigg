@@ -10,6 +10,7 @@
 
 #import "MDPreferences.h"
 #import "MDPreferencesWindowController.h"
+#import "MDDigg.h"
 
 @implementation MDAppDelegate
 
@@ -29,6 +30,8 @@
                                              selector:@selector(userDefaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
+    
+    NSLog(@"Digg stories: %@", [MDDigg retrieveStories]);
 }
 
 - (void)awakeFromNib {
