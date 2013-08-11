@@ -12,6 +12,7 @@
 #define _MenuDigg_MDPreferences_H_
 
 extern NSString *PreferencesUpdateInterval;
+extern NSString *PreferencesStories;
 
 typedef enum updateIntervalTypes {
     EVERY_15 = 0,

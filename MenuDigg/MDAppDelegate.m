@@ -10,9 +10,15 @@
 
 #import "MDPreferences.h"
 #import "MDPreferencesWindowController.h"
-#import "MDDigg.h"
 
-@implementation MDAppDelegate
+#import "MDDigg.h"
+#import "MDDiggStory.h"
+
+@implementation MDAppDelegate {
+    NSArray *stories;
+    
+    NSMutableArray *storyMenuItems;
+}
 
 @synthesize statusMenu;
 @synthesize noStoriesMenuItem, separatorMenuItem, refreshMenuItem, preferencesMenuItem, quitMenuItem;
@@ -31,7 +37,23 @@
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
     
-    NSLog(@"Digg stories: %@", [MDDigg retrieveStories]);
+    NSData *storiesData = [[NSUserDefaults standardUserDefaults] objectForKey:PreferencesStories];
+    
+    if (storiesData == nil) {
+        NSLog(@"No stored stories found, retrieving fresh stories...");
+        
+        stories = [MDDigg retrieveStories];
+    } else {
+        NSLog(@"Loading from stored stories...");
+        
+        stories = [NSKeyedUnarchiver unarchiveObjectWithData:storiesData];
+    }
+    
+    NSLog(@"Currently have %ld stories: %@", [stories count], stories);
+    
+    storyMenuItems = [NSMutableArray array];
+    
+    [self updateStoryMenuItems];
 }
 
 - (void)awakeFromNib {
@@ -47,10 +69,42 @@
     [self updateRefreshMenuItem];
 }
 
+- (void)updateStoryMenuItems {
+    [noStoriesMenuItem setHidden:[stories count] > 0];
+    
+    if ([storyMenuItems count] > 0) {
+        for (NSMenuItem *item in storyMenuItems) {
+            [statusMenu removeItem:item];
+        }
+    }
+    
+    [storyMenuItems removeAllObjects];
+    
+    for (MDDiggStory *story in stories) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[story title] action:@selector(storyMenuItemClicked:) keyEquivalent:@""];
+        
+        [item setToolTip:[story kicker]];
+        [item setRepresentedObject:story];
+        
+        [statusMenu insertItem:item atIndex: 0];
+        
+        [storyMenuItems addObject:item];
+    }
+}
+
 - (void)updateRefreshMenuItem {
     NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
     
     [refreshMenuItem setHidden:updateInterval != MANUALLY];
+}
+
+- (void)storyMenuItemClicked:(id)sender {
+    NSMenuItem *item = (NSMenuItem *) sender;
+    MDDiggStory *story = [item representedObject];
+    
+    NSURL *url = [[NSURL alloc] initWithString:[story url]];
+    
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)preferences:(id)sender {

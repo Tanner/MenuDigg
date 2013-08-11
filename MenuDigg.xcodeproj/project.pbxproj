@@ -148,6 +148,7 @@
 			children = (
 				C3C94C4817B2F552007E3E92 /* MDAppDelegate.h */,
 				C3C94C4917B2F552007E3E92 /* MDAppDelegate.m */,
+				C3C94C4B17B2F552007E3E92 /* MainMenu.xib */,
 				C3834ED517B3371A00D99859 /* MDPreferences.h */,
 				C3834ED617B3371B00D99859 /* MDPreferences.m */,
 				C3C94C7617B30FA9007E3E92 /* MDGeneralPreferencesViewController.h */,
@@ -163,7 +164,6 @@
 				C3834EDC17B46EE300D99859 /* MDDigg.m */,
 				C3DD151017B8040D009AFF7C /* MDDiggStory.h */,
 				C3DD151117B8040D009AFF7C /* MDDiggStory.m */,
-				C3C94C4B17B2F552007E3E92 /* MainMenu.xib */,
 				C3C94C3D17B2F552007E3E92 /* Supporting Files */,
 			);
 			path = MenuDigg;
