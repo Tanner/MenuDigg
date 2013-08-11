@@ -42,12 +42,7 @@
     if (storiesData == nil) {
         NSLog(@"No stored stories found, retrieving fresh stories...");
         
-        stories = [MDDigg retrieveStories];
-        
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:stories];
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:PreferencesStories];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self refreshStories];
     } else {
         NSLog(@"Loading from stored stories...");
         
@@ -72,6 +67,15 @@
 
 - (void)userDefaultsChanged:(NSNotification *)notification {
     [self updateRefreshMenuItem];
+}
+
+- (void)refreshStories {
+    stories = [MDDigg retrieveStories];
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:stories];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:PreferencesStories];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)updateStoryMenuItems {
@@ -110,6 +114,11 @@
     NSURL *url = [[NSURL alloc] initWithString:[story url]];
     
     [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction)refresh:(id)sender {
+    [self refreshStories];
+    [self updateStoryMenuItems];
 }
 
 - (IBAction)preferences:(id)sender {
