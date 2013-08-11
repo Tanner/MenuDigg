@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MDDiggStory : NSObject
+@interface MDDiggStory : NSObject <NSCoding>
 
 @property (retain) NSString *title;
 @property (retain) NSString *kicker;

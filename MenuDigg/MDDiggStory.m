@@ -22,6 +22,24 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [self init]) {
+        title = [aDecoder decodeObjectForKey:@"title"];
+        kicker = [aDecoder decodeObjectForKey:@"kicker"];
+        url = [aDecoder decodeObjectForKey:@"url"];
+        content = [aDecoder decodeObjectForKey:@"content"];
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:title forKey:@"title"];
+    [aCoder encodeObject:kicker forKey:@"kicker"];
+    [aCoder encodeObject:url forKey:@"url"];
+    [aCoder encodeObject:content forKey:@"content"];
+}
+
 - (NSString *)description {
     return [[NSString alloc] initWithFormat:@"%@ (%@) at %@", title, kicker, url];
 }
