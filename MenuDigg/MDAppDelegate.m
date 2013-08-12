@@ -18,6 +18,8 @@
     NSArray *stories;
     
     NSMutableArray *storyMenuItems;
+    
+    dispatch_queue_t refreshQueue;
 }
 
 @synthesize statusMenu;
@@ -28,6 +30,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    refreshQueue = dispatch_queue_create("Refresh Queue", DISPATCH_QUEUE_SERIAL);
+    
     NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
@@ -49,11 +53,12 @@
         stories = [NSKeyedUnarchiver unarchiveObjectWithData:storiesData];
     }
     
-    NSLog(@"Currently have %ld stories: %@", [stories count], stories);
+    NSLog(@"Currently have %ld stories", [stories count]);
     
     storyMenuItems = [NSMutableArray array];
     
     [self updateStoryMenuItems];
+    [self scheduleRefreshTimer];
 }
 
 - (void)awakeFromNib {
@@ -71,11 +76,15 @@
 }
 
 - (void)userDefaultsChanged:(NSNotification *)notification {
-    [self updateRefreshMenuItem];
+    [self updateRefreshMenuItem];    
 }
 
 - (void)refreshStories {
+    NSLog(@"Retrieving fresh stories...");
+    
     stories = [MDDigg retrieveStories];
+    
+    NSLog(@"Retrieved %ld stories", [stories count]);
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:stories];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:PreferencesStories];
@@ -110,6 +119,54 @@
     NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
     
     [refreshMenuItem setHidden:updateInterval != MANUALLY];
+}
+
+- (int)refreshTime {
+    NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
+    
+    switch (updateInterval) {
+        case EVERY_15:
+            return 60 * 15;
+            break;
+        case EVERY_30:
+            return 60 * 30;
+            break;
+        case EVERY_HOUR:
+            return 60 * 60;
+            break;
+        case MANUALLY:
+        default:
+            return -1;
+    }
+}
+
+- (void)scheduleRefreshTimer {
+    int time = [self refreshTime];
+    
+    if (time <= 0) {
+        return;
+    }
+    
+    NSLog(@"Scheduling next refresh in %d seconds", time);
+    
+    dispatch_time_t dispatchTime = dispatch_time(DISPATCH_TIME_NOW, time * NSEC_PER_SEC);
+    
+    dispatch_after(dispatchTime, refreshQueue, ^{
+        // Check to make sure the user didn't change update interval to manually
+        NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
+        
+        if (updateInterval == MANUALLY) {
+            return;
+        }
+        
+        // If not, we're free to refresh
+        NSLog(@"Refreshing stories from periodic timer...");
+        
+        [self refreshStories];
+        [self updateStoryMenuItems];
+        
+        [self scheduleRefreshTimer];
+    });
 }
 
 - (void)storyMenuItemClicked:(id)sender {
