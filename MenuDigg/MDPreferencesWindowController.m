@@ -37,24 +37,33 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [self resizeWindowToView:generalViewController.view];
     [self.view addSubview:generalViewController.view];
 }
 
-- (void)removeAllSubviews {
-    [generalViewController.view removeFromSuperview];
-    [infoViewController.view removeFromSuperview];
+- (void)resizeWindowToView:(NSView *)aView {
+    NSRect windowFrame = [self.window contentRectForFrameRect:[self.window frame]];
+    NSSize size = aView.frame.size;
+    
+    NSRect rect = NSMakeRect(NSMinX(windowFrame), NSMaxY(windowFrame) - size.height, size.width, size.height);
+    
+    NSRect newWindowFrame = [self.window frameRectForContentRect:rect];
+    
+    [self.window setFrame:newWindowFrame display:YES animate:[self.window isVisible]];
 }
 
 - (IBAction)generalToolbarItemClicked:(id)sender {
-    [self removeAllSubviews];
-    
     [self.view addSubview:generalViewController.view];
+    [infoViewController.view removeFromSuperview];
+    
+    [self resizeWindowToView:generalViewController.view];
 }
 
-- (IBAction)infoToolbarItemClicked:(id)sender {
-    [self removeAllSubviews];
-
+- (IBAction)infoToolbarItemClicked:(id)sender {    
     [self.view addSubview:infoViewController.view];
+    [generalViewController.view removeFromSuperview];
+    
+    [self resizeWindowToView:infoViewController.view];
 }
 
 @end

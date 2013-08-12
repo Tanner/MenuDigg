@@ -29,6 +29,7 @@
 		C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */; };
 		C3C94C7E17B31043007E3E92 /* MDPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */; };
 		C3DD151217B8040D009AFF7C /* MDDiggStory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD151117B8040D009AFF7C /* MDDiggStory.m */; };
+		C3DD151617B83851009AFF7C /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3DD151517B83851009AFF7C /* Octocat.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		C3C94C7C17B31043007E3E92 /* MDPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPreferencesWindowController.m; sourceTree = "<group>"; };
 		C3DD151017B8040D009AFF7C /* MDDiggStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDiggStory.h; sourceTree = "<group>"; };
 		C3DD151117B8040D009AFF7C /* MDDiggStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDiggStory.m; sourceTree = "<group>"; };
+		C3DD151517B83851009AFF7C /* Octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Octocat.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				C3C94C4517B2F552007E3E92 /* Credits.rtf */,
 				C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */,
 				C3834ED817B3440300D99859 /* Defaults.plist */,
+				C3DD151517B83851009AFF7C /* Octocat.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */,
 				C3834ED317B328FA00D99859 /* InfoView.xib in Resources */,
 				C3834EDA17B3D5AF00D99859 /* Defaults.plist in Resources */,
+				C3DD151617B83851009AFF7C /* Octocat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
