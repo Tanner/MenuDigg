@@ -13,6 +13,8 @@
 		C3834EDA17B3D5AF00D99859 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3834ED817B3440300D99859 /* Defaults.plist */; };
 		C3834EDD17B46EE300D99859 /* MDDigg.m in Sources */ = {isa = PBXBuildFile; fileRef = C3834EDC17B46EE300D99859 /* MDDigg.m */; };
 		C3834F2317B5A72000D99859 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C3834F2217B5A72000D99859 /* libxml2.dylib */; };
+		C390FE0917B97D4C001C5E4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C390FE0817B97D4C001C5E4B /* icon.png */; };
+		C390FE0B17B97EFB001C5E4B /* alternateIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C390FE0A17B97EFB001C5E4B /* alternateIcon.png */; };
 		C3C94C3717B2F552007E3E92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C94C3617B2F552007E3E92 /* Cocoa.framework */; };
 		C3C94C4117B2F552007E3E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C3F17B2F552007E3E92 /* InfoPlist.strings */; };
 		C3C94C4317B2F552007E3E92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C4217B2F552007E3E92 /* main.m */; };
@@ -23,7 +25,6 @@
 		C3C94C5617B2F552007E3E92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C94C3617B2F552007E3E92 /* Cocoa.framework */; };
 		C3C94C5E17B2F552007E3E92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C5C17B2F552007E3E92 /* InfoPlist.strings */; };
 		C3C94C6117B2F552007E3E92 /* MenuDiggTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C6017B2F552007E3E92 /* MenuDiggTests.m */; };
-		C3C94C6D17B2F7E4007E3E92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */; };
 		C3C94C7017B30B4A007E3E92 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C6F17B30B4A007E3E92 /* PreferencesWindow.xib */; };
 		C3C94C7917B30FA9007E3E92 /* MDGeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C94C7717B30FA9007E3E92 /* MDGeneralPreferencesViewController.m */; };
 		C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C94C7817B30FA9007E3E92 /* GeneralPreferencesView.xib */; };
@@ -52,6 +53,13 @@
 		C3834EDB17B46EE300D99859 /* MDDigg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDigg.h; sourceTree = "<group>"; };
 		C3834EDC17B46EE300D99859 /* MDDigg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDigg.m; sourceTree = "<group>"; };
 		C3834F2217B5A72000D99859 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		C390FE0817B97D4C001C5E4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		C390FE0A17B97EFB001C5E4B /* alternateIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alternateIcon.png; sourceTree = "<group>"; };
+		C390FE0D17B98004001C5E4B /* Data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Data; sourceTree = "<group>"; };
+		C390FE0E17B98004001C5E4B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = text; path = fonts; sourceTree = "<group>"; };
+		C390FE1117B98004001C5E4B /* Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Preview.png; sourceTree = "<group>"; };
+		C390FE1217B98004001C5E4B /* Thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thumbnail.png; sourceTree = "<group>"; };
+		C390FE1317B98004001C5E4B /* version */ = {isa = PBXFileReference; lastKnownFileType = text; path = version; sourceTree = "<group>"; };
 		C3C94C3317B2F552007E3E92 /* MenuDigg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuDigg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C94C3617B2F552007E3E92 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C3C94C3917B2F552007E3E92 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -71,7 +79,6 @@
 		C3C94C5D17B2F552007E3E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C3C94C5F17B2F552007E3E92 /* MenuDiggTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuDiggTests.h; sourceTree = "<group>"; };
 		C3C94C6017B2F552007E3E92 /* MenuDiggTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuDiggTests.m; sourceTree = "<group>"; };
-		C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C3C94C6F17B30B4A007E3E92 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		C3C94C7617B30FA9007E3E92 /* MDGeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGeneralPreferencesViewController.h; sourceTree = "<group>"; };
 		C3C94C7717B30FA9007E3E92 /* MDGeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGeneralPreferencesViewController.m; sourceTree = "<group>"; };
@@ -105,6 +112,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C390FE0C17B98004001C5E4B /* Icon.sketch */ = {
+			isa = PBXGroup;
+			children = (
+				C390FE0D17B98004001C5E4B /* Data */,
+				C390FE0E17B98004001C5E4B /* fonts */,
+				C390FE0F17B98004001C5E4B /* Images */,
+				C390FE1017B98004001C5E4B /* QuickLook */,
+				C390FE1317B98004001C5E4B /* version */,
+			);
+			path = Icon.sketch;
+			sourceTree = "<group>";
+		};
+		C390FE0F17B98004001C5E4B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C390FE1017B98004001C5E4B /* QuickLook */ = {
+			isa = PBXGroup;
+			children = (
+				C390FE1117B98004001C5E4B /* Preview.png */,
+				C390FE1217B98004001C5E4B /* Thumbnail.png */,
+			);
+			path = QuickLook;
+			sourceTree = "<group>";
+		};
 		C3C94C2A17B2F552007E3E92 = {
 			isa = PBXGroup;
 			children = (
@@ -179,9 +214,11 @@
 				C3C94C4217B2F552007E3E92 /* main.m */,
 				C3C94C4417B2F552007E3E92 /* MenuDigg-Prefix.pch */,
 				C3C94C4517B2F552007E3E92 /* Credits.rtf */,
-				C3C94C6C17B2F7E4007E3E92 /* Localizable.strings */,
 				C3834ED817B3440300D99859 /* Defaults.plist */,
 				C3DD151517B83851009AFF7C /* Octocat.png */,
+				C390FE0817B97D4C001C5E4B /* icon.png */,
+				C390FE0A17B97EFB001C5E4B /* alternateIcon.png */,
+				C390FE0C17B98004001C5E4B /* Icon.sketch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -280,12 +317,13 @@
 				C3C94C4117B2F552007E3E92 /* InfoPlist.strings in Resources */,
 				C3C94C4717B2F552007E3E92 /* Credits.rtf in Resources */,
 				C3C94C4D17B2F552007E3E92 /* MainMenu.xib in Resources */,
-				C3C94C6D17B2F7E4007E3E92 /* Localizable.strings in Resources */,
 				C3C94C7017B30B4A007E3E92 /* PreferencesWindow.xib in Resources */,
 				C3C94C7A17B30FA9007E3E92 /* GeneralPreferencesView.xib in Resources */,
 				C3834ED317B328FA00D99859 /* InfoView.xib in Resources */,
 				C3834EDA17B3D5AF00D99859 /* Defaults.plist in Resources */,
 				C3DD151617B83851009AFF7C /* Octocat.png in Resources */,
+				C390FE0917B97D4C001C5E4B /* icon.png in Resources */,
+				C390FE0B17B97EFB001C5E4B /* alternateIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

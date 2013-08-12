@@ -59,8 +59,13 @@
 - (void)awakeFromNib {
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
-    [statusItem setTitle:NSLocalizedString(@"STATUS_ITEM_TITLE", nil)];
     [statusItem setHighlightMode:YES];
+    
+    NSImage *statusImage = [NSImage imageNamed:@"icon.png"];
+    [statusItem setImage:statusImage];
+    
+    NSImage *statusAlternateImage = [NSImage imageNamed:@"alternateIcon.png"];
+    [statusItem setAlternateImage:statusAlternateImage];
         
     [self updateRefreshMenuItem];
 }
