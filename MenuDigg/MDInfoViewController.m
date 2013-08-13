@@ -14,11 +14,19 @@
 
 @implementation MDInfoViewController
 
+#define GITHUB_URL @"http://github.com/Tanner/MenuDigg"
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     return self;
+}
+
+- (IBAction)gitHubUrlClicked:(id)sender {
+    NSURL *url = [[NSURL alloc] initWithString:GITHUB_URL];
+    
+    [[NSWorkspace sharedWorkspace] openURL:url];    
 }
 
 @end
