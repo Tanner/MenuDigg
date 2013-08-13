@@ -30,9 +30,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
     refreshQueue = dispatch_queue_create("Refresh Queue", DISPATCH_QUEUE_SERIAL);
-    
+
+    // Register the default defaults if they don't exist
     NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
@@ -42,6 +42,7 @@
                                                  name:UPDATE_INTERVAL_CHANGED_NOTIFICATION
                                                object:nil];
     
+    // Load (if necessary) and put the stories in the status bar menu
     NSData *storiesData = [[NSUserDefaults standardUserDefaults] objectForKey:PreferencesStories];
     
     if (storiesData != nil) {
@@ -75,6 +76,7 @@
 - (void)updateIntervalChanged:(NSNotification *)notification {
     [self updateRefreshMenuItem];
     
+    // Cancel the timer and reschedule a new one with the new time
     [self scheduleRefreshTimer];
 }
 
@@ -173,7 +175,11 @@
     dispatch_resume(timer);
 }
 
+# pragma mark -
+# pragma Menu Item Handlers
+
 - (void)storyMenuItemClicked:(id)sender {
+    // Open the story in the user's browser!
     NSMenuItem *item = (NSMenuItem *) sender;
     MDDiggStory *story = [item representedObject];
     
