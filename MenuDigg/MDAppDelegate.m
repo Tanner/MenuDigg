@@ -109,7 +109,10 @@
     
     [storyMenuItems removeAllObjects];
     
-    for (MDDiggStory *story in stories) {
+    int numberOfStories = [self numberOfStories];
+    
+    for (int i = 0; i < numberOfStories; i++) {
+        MDDiggStory *story = [stories objectAtIndex:i];
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[story title] action:@selector(storyMenuItemClicked:) keyEquivalent:@""];
         
         [item setToolTip:[story kicker]];
@@ -125,6 +128,25 @@
     NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
     
     [refreshMenuItem setHidden:updateInterval != MANUALLY];
+}
+
+- (int)numberOfStories {
+    NSInteger numberOfStories = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesNumberOfStories];
+    
+    switch (numberOfStories) {
+        case FIVE_STORIES:
+            return 5;
+            break;
+        case TEN_STORIES:
+            return 10;
+            break;
+        case FIFTHTEEN_STORIES:
+            return 15;
+            break;
+        case ALL_STORIES:
+        default:
+            return [stories count];
+    }
 }
 
 - (int)refreshTime {
