@@ -50,6 +50,13 @@
     // Load (if necessary) and put the stories in the status bar menu
     NSData *storiesData = [[NSUserDefaults standardUserDefaults] objectForKey:PreferencesStories];
     
+    NSDate *lastUpdateDate = [[NSUserDefaults standardUserDefaults] objectForKey:PreferencesLastUpdateDate];
+    int refreshTime = [self refreshTime];
+    
+    if (refreshTime > 0 && (lastUpdateDate == nil || [lastUpdateDate timeIntervalSinceNow] > refreshTime)) {
+        storiesData = nil;
+    }
+    
     if (storiesData != nil) {
         NSLog(@"Loading from stored stories...");
         
@@ -96,6 +103,8 @@
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:stories];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:PreferencesStories];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:PreferencesLastUpdateDate];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

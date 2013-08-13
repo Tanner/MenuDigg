@@ -12,6 +12,8 @@
 #define _MenuDigg_MDPreferences_H_
 
 extern NSString *PreferencesUpdateInterval;
+extern NSString *PreferencesLastUpdateDate;
+
 extern NSString *PreferencesNumberOfStories;
 
 extern NSString *PreferencesStories;
