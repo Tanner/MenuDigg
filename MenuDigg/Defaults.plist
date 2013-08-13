@@ -4,5 +4,7 @@
 <dict>
 	<key>UpdateInterval</key>
 	<integer>0</integer>
+	<key>NumberOfStories</key>
+	<integer>0</integer>
 </dict>
 </plist>
