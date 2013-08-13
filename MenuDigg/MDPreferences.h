@@ -12,6 +12,8 @@
 #define _MenuDigg_MDPreferences_H_
 
 extern NSString *PreferencesUpdateInterval;
+extern NSString *PreferencesNumberOfStories;
+
 extern NSString *PreferencesStories;
 
 typedef enum updateIntervalTypes {
@@ -20,5 +22,12 @@ typedef enum updateIntervalTypes {
     EVERY_HOUR = 2,
     MANUALLY
 } UpdateInterval;
+
+typedef enum numberOfStoryTypes {
+    FIVE_STORIES = 0,
+    TEN_STORIES = 1,
+    FIFTHTEEN_STORIES = 2,
+    ALL_STORIES
+} NumberOfStory;
 
 #endif

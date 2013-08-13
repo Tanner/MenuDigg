@@ -42,6 +42,11 @@
                                                  name:UPDATE_INTERVAL_CHANGED_NOTIFICATION
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateStoryMenuItems)
+                                                 name:NUMBER_STORIES_CHANGED_NOTIFICATION
+                                               object:nil];
+    
     // Load (if necessary) and put the stories in the status bar menu
     NSData *storiesData = [[NSUserDefaults standardUserDefaults] objectForKey:PreferencesStories];
     

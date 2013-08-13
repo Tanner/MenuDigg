@@ -9,5 +9,6 @@
 #import "MDPreferences.h"
 
 NSString *PreferencesUpdateInterval = @"UpdateInterval";
+NSString *PreferencesNumberOfStories = @"NumberOfStories";
 
 NSString *PreferencesStories = @"Stories";

@@ -35,4 +35,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_INTERVAL_CHANGED_NOTIFICATION object:nil userInfo:info];
 }
 
+- (IBAction)setNumberOfStories:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NUMBER_STORIES_CHANGED_NOTIFICATION object:nil];
+}
+
 @end
