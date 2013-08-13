@@ -102,7 +102,10 @@
     
     [storyMenuItems removeAllObjects];
     
-    for (MDDiggStory *story in stories) {
+    NSEnumerator *enumerator = [stories reverseObjectEnumerator];
+    MDDiggStory *story;
+    
+    while (story = [enumerator nextObject]) {
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[story title] action:@selector(storyMenuItemClicked:) keyEquivalent:@""];
         
         [item setToolTip:[story kicker]];
