@@ -122,7 +122,7 @@
     
     int numberOfStories = [self numberOfStories];
     
-    for (int i = 0; i < numberOfStories; i++) {
+    for (int i = numberOfStories; i >= 0; i--) {
         MDDiggStory *story = [stories objectAtIndex:i];
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[story title] action:@selector(storyMenuItemClicked:) keyEquivalent:@""];
         
