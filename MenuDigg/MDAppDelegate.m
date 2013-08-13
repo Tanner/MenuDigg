@@ -159,7 +159,9 @@
     
     NSLog(@"Scheduling next refresh in %d seconds", time);
 
-    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), time * NSEC_PER_SEC, 60 * 5 * NSEC_PER_SEC);
+    dispatch_time_t startTime = dispatch_time(dispatch_walltime(NULL, 0), time * NSEC_PER_SEC);
+    
+    dispatch_source_set_timer(timer, startTime, time * NSEC_PER_SEC, 60 * 5 * NSEC_PER_SEC);
     
     dispatch_source_set_event_handler(timer, ^{
         NSLog(@"Refreshing stories from periodic timer...");
@@ -190,8 +192,7 @@
         preferencesWindow = [[MDPreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
     
-    [preferencesWindow showWindow:nil];
-    [preferencesWindow.window makeKeyAndOrderFront:self];
+    [preferencesWindow showWindow:self];
 }
 
 - (IBAction)quit:(id)sender {
