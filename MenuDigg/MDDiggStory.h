@@ -15,8 +15,6 @@
 
 @property (retain) NSString *url;
 
-@property (retain) NSString *content;
-
 - (id)initWithTitle:(NSString *)aTitle kicker:(NSString *)aKicker url:(NSString *)aUrl;
 
 - (NSString *)description;

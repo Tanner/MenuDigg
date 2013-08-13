@@ -10,7 +10,7 @@
 
 @implementation MDDiggStory
 
-@synthesize title, kicker, url, content;
+@synthesize title, kicker, url;
 
 - (id)initWithTitle:(NSString *)aTitle kicker:(NSString *)aKicker url:(NSString *)aUrl {
     if (self = [self init]) {
@@ -27,7 +27,6 @@
         title = [aDecoder decodeObjectForKey:@"title"];
         kicker = [aDecoder decodeObjectForKey:@"kicker"];
         url = [aDecoder decodeObjectForKey:@"url"];
-        content = [aDecoder decodeObjectForKey:@"content"];
     }
     
     return self;
@@ -37,7 +36,6 @@
     [aCoder encodeObject:title forKey:@"title"];
     [aCoder encodeObject:kicker forKey:@"kicker"];
     [aCoder encodeObject:url forKey:@"url"];
-    [aCoder encodeObject:content forKey:@"content"];
 }
 
 - (NSString *)description {
