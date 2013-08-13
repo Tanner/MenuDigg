@@ -53,8 +53,15 @@
     }];
         
     xmlFreeDoc(doc);
+
+    // Must reverse the stories as `stories` contains them from bottom-up
+    NSMutableArray *reversedStories = [NSMutableArray array];
     
-    return stories;
+    for (MDDiggStory *story in [stories reverseObjectEnumerator]) {
+        [reversedStories addObject:story];
+    }
+    
+    return reversedStories;
 }
 
 + (MDDiggStory *)extractStoryFromNode:(xmlNodePtr)node {
