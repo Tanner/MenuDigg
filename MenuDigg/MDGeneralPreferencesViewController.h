@@ -10,6 +10,10 @@
 
 @interface MDGeneralPreferencesViewController : NSViewController
 
+#define UPDATE_INTERVAL_CHANGED_NOTIFICATION @"UpdateIntervalChanged"
+
+#define LAST_UPDATE_INTERVAL_INDEX @"LastUpdateIntervalIndex"
+
 @property (assign) IBOutlet NSPopUpButton *updateIntervalMenu;
 
 - (IBAction)setUpdateInterval:(id)sender;

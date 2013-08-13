@@ -10,7 +10,9 @@
 
 #import "MDPreferences.h"
 
-@interface MDGeneralPreferencesViewController ()
+@interface MDGeneralPreferencesViewController () {
+    int lastSelectedUpdateIntervalIndex;
+}
 
 @end
 
@@ -29,7 +31,11 @@
 }
 
 - (IBAction)setUpdateInterval:(id)sender {
-    NSLog(@"%@", [sender selectedItem]);
+    NSDictionary *info = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:lastSelectedUpdateIntervalIndex], LAST_UPDATE_INTERVAL_INDEX, nil];
+    
+    lastSelectedUpdateIntervalIndex = (int) [updateIntervalMenu indexOfSelectedItem];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_INTERVAL_CHANGED_NOTIFICATION object:nil userInfo:info];
 }
 
 @end

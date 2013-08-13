@@ -20,6 +20,7 @@
     NSMutableArray *storyMenuItems;
     
     dispatch_queue_t refreshQueue;
+    dispatch_source_t timer;
 }
 
 @synthesize statusMenu;
@@ -37,17 +38,13 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(userDefaultsChanged:)
-                                                 name:NSUserDefaultsDidChangeNotification
+                                             selector:@selector(updateIntervalChanged:)
+                                                 name:UPDATE_INTERVAL_CHANGED_NOTIFICATION
                                                object:nil];
     
     NSData *storiesData = [[NSUserDefaults standardUserDefaults] objectForKey:PreferencesStories];
     
-    if (storiesData == nil) {
-        NSLog(@"No stored stories found, retrieving fresh stories...");
-        
-        [self refreshStories];
-    } else {
+    if (storiesData != nil) {
         NSLog(@"Loading from stored stories...");
         
         stories = [NSKeyedUnarchiver unarchiveObjectWithData:storiesData];
@@ -75,8 +72,10 @@
     [self updateRefreshMenuItem];
 }
 
-- (void)userDefaultsChanged:(NSNotification *)notification {
-    [self updateRefreshMenuItem];    
+- (void)updateIntervalChanged:(NSNotification *)notification {
+    [self updateRefreshMenuItem];
+    
+    [self scheduleRefreshTimer];
 }
 
 - (void)refreshStories {
@@ -143,30 +142,30 @@
 - (void)scheduleRefreshTimer {
     int time = [self refreshTime];
     
+    if (timer != nil) {
+        NSLog(@"Cancelling existing timer");
+        
+        dispatch_source_cancel(timer);
+    }
+    
     if (time <= 0) {
         return;
     }
     
+    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, refreshQueue);
+    
     NSLog(@"Scheduling next refresh in %d seconds", time);
+
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), time * NSEC_PER_SEC, 60 * 5 * NSEC_PER_SEC);
     
-    dispatch_time_t dispatchTime = dispatch_time(DISPATCH_TIME_NOW, time * NSEC_PER_SEC);
-    
-    dispatch_after(dispatchTime, refreshQueue, ^{
-        // Check to make sure the user didn't change update interval to manually
-        NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
-        
-        if (updateInterval == MANUALLY) {
-            return;
-        }
-        
-        // If not, we're free to refresh
+    dispatch_source_set_event_handler(timer, ^{
         NSLog(@"Refreshing stories from periodic timer...");
-        
+
         [self refreshStories];
-        [self updateStoryMenuItems];
-        
-        [self scheduleRefreshTimer];
+        [self updateStoryMenuItems];        
     });
+    
+    dispatch_resume(timer);
 }
 
 - (void)storyMenuItemClicked:(id)sender {
