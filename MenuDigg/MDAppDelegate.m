@@ -54,6 +54,8 @@
         NSLog(@"Loading from stored stories...");
         
         stories = [NSKeyedUnarchiver unarchiveObjectWithData:storiesData];
+    } else {
+        [self refreshStories];
     }
     
     NSLog(@"Currently have %ld stories", [stories count]);
