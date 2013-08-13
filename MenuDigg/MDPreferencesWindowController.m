@@ -40,6 +40,12 @@
     [self.view addSubview:generalViewController.view];
 }
 
+- (void)showWindow:(id)sender {
+    [NSApp activateIgnoringOtherApps:YES];
+
+    [super showWindow:sender];
+}
+
 - (void)resizeWindowToView:(NSView *)aView {
     NSRect windowFrame = [self.window contentRectForFrameRect:[self.window frame]];
     NSSize size = aView.frame.size;
