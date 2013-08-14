@@ -74,6 +74,8 @@
                 [stories addObject:story];
             }
         }];
+        
+        *stop = YES;
     }];
     
     return stories;
