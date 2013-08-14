@@ -10,6 +10,8 @@
 
 #import "MDDiggStory.h"
 
+#import "gumbo.h"
+
 #import "libxml/HTMLparser.h"
 #import "libxml/xpath.h"
 #import "libxml/tree.h"

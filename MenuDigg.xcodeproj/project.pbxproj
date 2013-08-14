@@ -491,7 +491,11 @@
 				GCC_PREFIX_HEADER = "MenuDigg/MenuDigg-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MenuDigg/MenuDigg-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_CFLAGS = "-I/usr/local/include";
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lgumbo",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -507,7 +511,11 @@
 				GCC_PREFIX_HEADER = "MenuDigg/MenuDigg-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MenuDigg/MenuDigg-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_CFLAGS = "-I/usr/local/include";
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lgumbo",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
