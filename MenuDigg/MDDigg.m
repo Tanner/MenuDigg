@@ -72,6 +72,8 @@
             
             if (story != nil) {
                 [stories addObject:story];
+            } else {
+                NSLog(@"Failed to extract story in top-stories");
             }
         }];
         
