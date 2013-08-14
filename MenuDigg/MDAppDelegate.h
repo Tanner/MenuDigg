@@ -10,7 +10,7 @@
 
 #import "MDPreferencesWindowController.h"
 
-@interface MDAppDelegate : NSObject {
+@interface MDAppDelegate : NSObject <NSMenuDelegate> {
     NSStatusItem *statusItem;
 }
 

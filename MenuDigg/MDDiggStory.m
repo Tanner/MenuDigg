@@ -38,6 +38,19 @@
     [aCoder encodeObject:url forKey:@"url"];
 }
 
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[MDDiggStory class]]) {
+        MDDiggStory *story = (MDDiggStory *) object;
+        
+        return [[story title] isEqualToString:title] &&
+        [[story kicker] isEqualToString:kicker] &&
+        [[story url] isEqualToString:url];
+    }
+    
+    return NO;
+}
+
 - (NSString *)description {
     return [[NSString alloc] initWithFormat:@"%@ (%@) at %@", title, kicker, url];
 }

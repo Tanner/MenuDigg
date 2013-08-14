@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3273C8517BADF1C0000D102 /* newStoriesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3273C8417BADF1C0000D102 /* newStoriesIcon.png */; };
 		C3834ED217B328FA00D99859 /* MDInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3834ED017B328FA00D99859 /* MDInfoViewController.m */; };
 		C3834ED317B328FA00D99859 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3834ED117B328FA00D99859 /* InfoView.xib */; };
 		C3834ED717B3371B00D99859 /* MDPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C3834ED617B3371B00D99859 /* MDPreferences.m */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3273C8417BADF1C0000D102 /* newStoriesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newStoriesIcon.png; sourceTree = "<group>"; };
 		C3834ECF17B328FA00D99859 /* MDInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDInfoViewController.h; sourceTree = "<group>"; };
 		C3834ED017B328FA00D99859 /* MDInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDInfoViewController.m; sourceTree = "<group>"; };
 		C3834ED117B328FA00D99859 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				C3834ED817B3440300D99859 /* Defaults.plist */,
 				C390FE0817B97D4C001C5E4B /* icon.png */,
 				C390FE0A17B97EFB001C5E4B /* alternateIcon.png */,
+				C3273C8417BADF1C0000D102 /* newStoriesIcon.png */,
 				C390FE0C17B98004001C5E4B /* Icon.sketch */,
 			);
 			name = "Supporting Files";
@@ -320,6 +323,7 @@
 				C3834EDA17B3D5AF00D99859 /* Defaults.plist in Resources */,
 				C390FE0917B97D4C001C5E4B /* icon.png in Resources */,
 				C390FE0B17B97EFB001C5E4B /* alternateIcon.png in Resources */,
+				C3273C8517BADF1C0000D102 /* newStoriesIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

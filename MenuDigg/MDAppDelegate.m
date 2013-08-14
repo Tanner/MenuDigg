@@ -19,6 +19,9 @@
     
     NSMutableArray *storyMenuItems;
     
+    NSImage *statusImage;
+    NSImage *newStoriesImage;
+    
     dispatch_queue_t refreshQueue;
     dispatch_source_t timer;
 }
@@ -78,12 +81,16 @@
     [statusItem setMenu:statusMenu];
     [statusItem setHighlightMode:YES];
     
-    NSImage *statusImage = [NSImage imageNamed:@"icon.png"];
-    [statusItem setImage:statusImage];
+    statusImage = [NSImage imageNamed:@"icon.png"];
+    newStoriesImage = [NSImage imageNamed:@"newStoriesIcon.png"];
     
     NSImage *statusAlternateImage = [NSImage imageNamed:@"alternateIcon.png"];
+    
+    [statusItem setImage:statusImage];
     [statusItem setAlternateImage:statusAlternateImage];
-        
+    
+    [statusItem setDoubleAction:@selector(statusMenuClicked)];
+    
     [self updateRefreshMenuItem];
 }
 
@@ -97,7 +104,13 @@
 - (void)refreshStories {
     NSLog(@"Retrieving fresh stories...");
     
-    stories = [MDDigg retrieveStories];
+    NSArray *newStories = [MDDigg retrieveStories];
+    
+    if (stories != nil && [newStories isEqualToArray:stories] == NO) {
+        [statusItem setImage:newStoriesImage];
+    }
+    
+    stories = newStories;
     
     NSLog(@"Retrieved %ld stories", [stories count]);
     
@@ -139,6 +152,12 @@
     NSInteger updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesUpdateInterval];
     
     [refreshMenuItem setHidden:updateInterval != MANUALLY];
+}
+
+- (void)menuWillOpen:(NSMenu *)menu {
+    if ([statusItem image] == newStoriesImage) {
+        [statusItem setImage:statusImage];
+    }
 }
 
 - (int)numberOfStories {
