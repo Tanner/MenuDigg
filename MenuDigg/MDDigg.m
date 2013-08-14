@@ -125,8 +125,26 @@
     for (int i = 0; i < children->length; i++) {
         GumboNode *child = (GumboNode *) children->data[i];
         
-        [MDDigg findNodesFromNode:child type:type tag:tag attributes:attributes block:block];
+        stop = [MDDigg findNodesHelperFromNode:child type:type tag:tag attributes:attributes block:block];
+        
+        if (stop) {
+            break;
+        }
     }
+}
+
++ (BOOL)findNodesHelperFromNode:(GumboNode *)node type:(GumboNodeType)type tag:(GumboTag)tag attributes:(NSDictionary *)attributes block:(void(^)(GumboNode *node, BOOL *stop))block {
+    __block BOOL myStop = NO;
+    
+    void(^myBlock)(GumboNode *node, BOOL *stop) = ^(GumboNode *node, BOOL *stop) {
+        block(node, stop);
+        
+        myStop = *stop;
+    };
+    
+    [MDDigg findNodesFromNode:node type:type tag:tag attributes:attributes block:myBlock];
+    
+    return myStop;
 }
 
 //+ (MDDiggStory *)extractStoryFromNode:(xmlNodePtr)node {
