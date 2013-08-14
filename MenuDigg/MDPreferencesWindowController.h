@@ -12,6 +12,8 @@
 
 @interface MDPreferencesWindowController : NSWindowController
 
+@property (assign) IBOutlet NSToolbar *toolbar;
+
 @property (assign) IBOutlet NSToolbarItem *general;
 @property (assign) IBOutlet NSToolbarItem *info;
 

@@ -38,6 +38,8 @@
     
     [self resizeWindowToView:generalViewController.view];
     [self.view addSubview:generalViewController.view];
+    
+    [self.toolbar setSelectedItemIdentifier:@"General"];
 }
 
 - (void)showWindow:(id)sender {
