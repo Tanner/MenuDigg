@@ -78,6 +78,30 @@
     attribute = gumbo_get_attribute(attributes, "data-contenturl");
     NSString *url = [[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding];
     
+    attribute = gumbo_get_attribute(attributes, "data-diggs");
+    int diggs = [[[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding] intValue];
+    
+    attribute = gumbo_get_attribute(attributes, "data-tweets");
+    int tweets = [[[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding] intValue];
+    
+    attribute = gumbo_get_attribute(attributes, "data-fb-shares");
+    int facebookShares = [[[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding] intValue];
+    
+    attribute = gumbo_get_attribute(attributes, "data-digg-score");
+    int diggScore = [[[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding] intValue];
+    
+    // Find the story's image
+    NSDictionary *imageAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:@"story-image-img", @"class", nil];
+    __block NSString *imageURL;
+    
+    [MDDigg findNodesFromNode:node type:GUMBO_NODE_ELEMENT tag:GUMBO_TAG_IMG attributes:imageAttributes block:^(GumboNode *node, BOOL *stop) {
+        GumboAttribute *attribute = gumbo_get_attribute(&node->v.element.attributes, "src");
+        
+        imageURL = [[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding];
+        
+        *stop = YES;
+    }];
+    
     // Find the story's kicker
     NSDictionary *kickerAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:@"story-kicker", @"class", nil];
     __block NSString *kicker;
@@ -111,6 +135,12 @@
     // Got all the data we need
     // Create the story!
     MDDiggStory *story = [[MDDiggStory alloc] initWithTitle:title kicker:kicker url:url];
+    story.desc = description;
+    
+    story.diggs = diggs;
+    story.tweets = tweets;
+    story.facebookShares = facebookShares;
+    story.diggScore = diggScore;
     
     return story;
 }

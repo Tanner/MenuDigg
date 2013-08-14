@@ -12,8 +12,14 @@
 
 @property (retain) NSString *title;
 @property (retain) NSString *kicker;
+@property (retain) NSString *desc;
 
 @property (retain) NSString *url;
+
+@property (assign) int diggs;
+@property (assign) int tweets;
+@property (assign) int facebookShares;
+@property (assign) int diggScore;
 
 - (id)initWithTitle:(NSString *)aTitle kicker:(NSString *)aKicker url:(NSString *)aUrl;
 

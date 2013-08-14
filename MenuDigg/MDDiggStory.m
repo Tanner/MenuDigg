@@ -10,7 +10,8 @@
 
 @implementation MDDiggStory
 
-@synthesize title, kicker, url;
+@synthesize title, kicker, desc, url;
+@synthesize diggs, tweets, facebookShares, diggScore;
 
 - (id)initWithTitle:(NSString *)aTitle kicker:(NSString *)aKicker url:(NSString *)aUrl {
     if (self = [self init]) {
