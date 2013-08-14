@@ -40,107 +40,138 @@
         return nil;
     }
     
-    htmlParserCtxtPtr context = htmlCreatePushParserCtxt(NULL, NULL, NULL, 0, NULL, 0);
+    GumboOutput* output = gumbo_parse([data cStringUsingEncoding:NSUTF8StringEncoding]);
     
-    xmlCtxtUseOptions(context, XML_PARSE_NOERROR | XML_PARSE_NOWARNING);
+//    [MDDigg xPathTraverseDocument:doc xPathExpression:xPathExpression withBlock:^(xmlNodePtr node) {
+//        MDDiggStory *story = [MDDigg extractStoryFromNode:node];
+//                
+//        [stories addObject:story];
+//    }];
     
-    htmlDocPtr doc = htmlCtxtReadMemory(context, [data UTF8String], (int) [data length], [DIGG_URL UTF8String], NULL, 0);
+    [MDDigg findStories:output->root];
     
-    NSString *xPathExpression = STORIES_XPATH;
-    
-    [MDDigg xPathTraverseDocument:doc xPathExpression:xPathExpression withBlock:^(xmlNodePtr node) {
-        MDDiggStory *story = [MDDigg extractStoryFromNode:node];
-                
-        [stories addObject:story];
-    }];
-        
-    xmlFreeDoc(doc);
+    gumbo_destroy_output(&kGumboDefaultOptions, output);
     
     return stories;
 }
 
-+ (MDDiggStory *)extractStoryFromNode:(xmlNodePtr)node {
-    NSString *title;
-    NSString *kicker;
-    NSString *url;
++ (NSArray *)findStories:(GumboNode *)node {
+    NSDictionary *topStoriesAttribute = [[NSDictionary alloc] initWithObjectsAndKeys:@"top-stories", @"id", nil];
     
-    for (xmlNodePtr i = node->children; i != NULL; i = i->next) {
-        if (xmlStrEqual(i->name, (xmlChar *) "header")) {
-            // Probably found <header class="story-header">
-            for (xmlNodePtr j = i->children; j != NULL; j = j->next) {
-                xmlChar *content = xmlNodeGetContent(j);
-                xmlChar *className = xmlGetProp(j, (xmlChar *) "class");
-                
-                if (xmlStrEqual(j->name, (xmlChar *) "div") && xmlStrEqual(className, (xmlChar *) STORY_KICKER_CLASS)) {
-                    // Found <div itemprop="alternative-headline" class="story-kicker">
-                    
-                    kicker = [[NSString alloc] initWithUTF8String:(char *) content];
-                    kicker = [kicker stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                } else if (xmlStrEqual(j->name, (xmlChar * ) "h2") && xmlStrEqual(className, (xmlChar *) STORY_TITLE_CLASS)) {
-                    // Found <h2 itemprop="headline" class="story-title entry-title">
-                    
-                    for (xmlNodePtr k = j->children; k != NULL; k = k->next) {
-                        xmlChar *content = xmlNodeGetContent(j);
-                        xmlChar *className = xmlGetProp(k, (xmlChar *) "class");
-                        xmlChar *href = xmlGetProp(k, (xmlChar *) "href");
-                        
-                        if (xmlStrEqual(k->name, (xmlChar *) "a") && xmlStrEqual(className, (xmlChar *) STORY_TITLE_LINK_CLASS)) {
-                            url = [[NSString alloc] initWithUTF8String:(char *) href];
-                            
-                            title = [[NSString alloc] initWithUTF8String:(char *) content];
-                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                            
-                            break;
-                        }
-                        
-                        xmlFree(content);
-                        xmlFree(className);
-                        xmlFree(href);
-                    }
-                }
-                
-                xmlFree(content);
-                xmlFree(className);
+    __block NSMutableArray *stories = [[NSMutableArray alloc] init];
+    
+    [MDDigg findNodesFromNode:node type:GUMBO_NODE_ELEMENT tag:GUMBO_TAG_SECTION attributes:topStoriesAttribute block:^(GumboNode *node, BOOL *stop) {
+        // Found the section containg all the stories
+        // Find all the stories
+        NSLog(@"Found top-stories");
+        
+        [MDDigg findNodesFromNode:node type:GUMBO_NODE_ELEMENT tag:GUMBO_TAG_ARTICLE attributes:nil block:^(GumboNode *node, BOOL *stop) {
+            // Found a story
+            // Extract the data from it
+            MDDiggStory *story = [MDDigg extractStoryFromNode:node];
+            
+            if (story != nil) {
+                [stories addObject:story];
             }
-        }
-    }
+        }];
+    }];
     
-    return [[MDDiggStory alloc] initWithTitle:title kicker:kicker url:url];
+    return stories;
 }
 
-+ (void)xPathTraverseDocument:(htmlDocPtr)document xPathExpression:(NSString *)expression withBlock:(void (^)(xmlNodePtr node))block {
-    xmlXPathContextPtr xPathContext = xmlXPathNewContext(document);
++ (MDDiggStory *)extractStoryFromNode:(GumboNode *)node {
+    NSLog(@"Found story");
     
-    if (xPathContext == NULL) {
-        NSLog(@"Unable to create new XPath context");
-                
+    return nil;
+}
+
++ (void)findNodesFromNode:(GumboNode *)node type:(GumboNodeType)type tag:(GumboTag)tag attributes:(NSDictionary *)attributes block:(void(^)(GumboNode *node, BOOL *stop))block {
+    if (node->type != type) {
         return;
     }
     
-    xmlXPathObjectPtr xPathObj = xmlXPathEvalExpression((xmlChar *) [expression UTF8String], xPathContext);
+    BOOL stop = NO;
     
-    if (xPathObj == NULL) {
-        NSLog(@"Unable to evaluate xpath expression \"%@\"", expression);
+    if (node->v.element.tag == tag) {
+        __block BOOL fail = NO;
         
-        xmlXPathFreeContext(xPathContext);
+        [attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            GumboAttribute *attribute = gumbo_get_attribute(&node->v.element.attributes, [key UTF8String]);
+            
+            if (attribute != NULL && strcmp(attribute->value, [obj UTF8String]) != 0) {
+                fail = YES;
+                *stop = YES;
+            } else if (attribute == NULL) {
+                fail = YES;
+                *stop = YES;
+            }
+        }];
         
-        return;
-    }
-    
-    xmlNodeSetPtr nodes = xPathObj->nodesetval;
-    
-    int size = nodes ? nodes->nodeNr : 0;
-        
-    for (int i = 0; i < size; ++i) {
-        assert(nodes->nodeTab[i]);
-        
-        if (nodes->nodeTab[i]->type == XML_ELEMENT_NODE && block != NULL) {
-            block(nodes->nodeTab[i]);
+        if (fail == NO) {
+            block(node, &stop);
         }
     }
     
-    xmlXPathFreeObject(xPathObj);
-    xmlXPathFreeContext(xPathContext);
+    if (stop) {
+        return;
+    }
+    
+    GumboVector *children = &node->v.element.children;
+
+    for (int i = 0; i < children->length; i++) {
+        GumboNode *child = (GumboNode *) children->data[i];
+        
+        [MDDigg findNodesFromNode:child type:type tag:tag attributes:attributes block:block];
+    }
 }
+
+//+ (MDDiggStory *)extractStoryFromNode:(xmlNodePtr)node {
+//    NSString *title;
+//    NSString *kicker;
+//    NSString *url;
+//    
+//    for (xmlNodePtr i = node->children; i != NULL; i = i->next) {
+//        if (xmlStrEqual(i->name, (xmlChar *) "header")) {
+//            // Probably found <header class="story-header">
+//            for (xmlNodePtr j = i->children; j != NULL; j = j->next) {
+//                xmlChar *content = xmlNodeGetContent(j);
+//                xmlChar *className = xmlGetProp(j, (xmlChar *) "class");
+//                
+//                if (xmlStrEqual(j->name, (xmlChar *) "div") && xmlStrEqual(className, (xmlChar *) STORY_KICKER_CLASS)) {
+//                    // Found <div itemprop="alternative-headline" class="story-kicker">
+//                    
+//                    kicker = [[NSString alloc] initWithUTF8String:(char *) content];
+//                    kicker = [kicker stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//                } else if (xmlStrEqual(j->name, (xmlChar * ) "h2") && xmlStrEqual(className, (xmlChar *) STORY_TITLE_CLASS)) {
+//                    // Found <h2 itemprop="headline" class="story-title entry-title">
+//                    
+//                    for (xmlNodePtr k = j->children; k != NULL; k = k->next) {
+//                        xmlChar *content = xmlNodeGetContent(j);
+//                        xmlChar *className = xmlGetProp(k, (xmlChar *) "class");
+//                        xmlChar *href = xmlGetProp(k, (xmlChar *) "href");
+//                        
+//                        if (xmlStrEqual(k->name, (xmlChar *) "a") && xmlStrEqual(className, (xmlChar *) STORY_TITLE_LINK_CLASS)) {
+//                            url = [[NSString alloc] initWithUTF8String:(char *) href];
+//                            
+//                            title = [[NSString alloc] initWithUTF8String:(char *) content];
+//                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//                            
+//                            break;
+//                        }
+//                        
+//                        xmlFree(content);
+//                        xmlFree(className);
+//                        xmlFree(href);
+//                    }
+//                }
+//                
+//                xmlFree(content);
+//                xmlFree(className);
+//            }
+//        }
+//    }
+//    
+//    return [[MDDiggStory alloc] initWithTitle:title kicker:kicker url:url];
+//}
 
 @end
