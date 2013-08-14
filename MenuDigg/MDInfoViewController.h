@@ -10,4 +10,6 @@
 
 @interface MDInfoViewController : NSViewController
 
+@property (assign) IBOutlet NSTextField *gitHubURL;
+
 @end
