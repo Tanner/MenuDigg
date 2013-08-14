@@ -83,10 +83,65 @@
     return stories;
 }
 
-+ (MDDiggStory *)extractStoryFromNode:(GumboNode *)node {
-    NSLog(@"Found story");
++ (MDDiggStory *)extractStoryFromNode:(GumboNode *)node {    
+    GumboVector *attributes = &node->v.element.attributes;
+    GumboAttribute *attribute;
     
-    return nil;
+    attribute = gumbo_get_attribute(attributes, "data-contenturl");
+    NSString *url = [[NSString alloc] initWithCString:attribute->value encoding:NSUTF8StringEncoding];
+    
+    // Find the story's kicker
+    NSDictionary *kickerAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:@"story-kicker", @"class", nil];
+    __block NSString *kicker;
+    
+    [MDDigg findNodesFromNode:node type:GUMBO_NODE_ELEMENT tag:GUMBO_TAG_DIV attributes:kickerAttributes block:^(GumboNode *node, BOOL *stop) {
+        kicker = [[MDDigg getTextForNode:node] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        *stop = YES;
+    }];
+    
+    // Find the story's title
+    NSDictionary *titleAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:@"story-title-link story-link", @"class", nil];
+    __block NSString *title;
+    
+    [MDDigg findNodesFromNode:node type:GUMBO_NODE_ELEMENT tag:GUMBO_TAG_A attributes:titleAttributes block:^(GumboNode *node, BOOL *stop) {
+        title = [[MDDigg getTextForNode:node] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        *stop = YES;
+    }];
+    
+    // Find the story's description
+    NSDictionary *descriptionAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:@"description", @"itemprop", nil];
+    __block NSString *description;
+    
+    [MDDigg findNodesFromNode:node type:GUMBO_NODE_ELEMENT tag:GUMBO_TAG_P attributes:descriptionAttributes block:^(GumboNode *node, BOOL *stop) {
+        description = [[MDDigg getTextForNode:node] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        *stop = YES;
+    }];
+    
+    // Got all the data we need
+    // Create the story!
+    MDDiggStory *story = [[MDDiggStory alloc] initWithTitle:title kicker:kicker url:url];
+    
+    return story;
+}
+
++ (NSString *)getTextForNode:(GumboNode *)node {
+    if (node->type == GUMBO_NODE_TEXT) {
+        return [[NSString alloc] initWithCString:node->v.text.text encoding:NSUTF8StringEncoding];
+    }
+    
+    GumboVector *children = &node->v.element.children;
+    NSMutableString *contents = [[NSMutableString alloc] init];
+    
+    for (int i = 0; i < children->length; i++) {
+        GumboNode *child = (GumboNode *) children->data[i];
+        
+        [contents appendString:[MDDigg getTextForNode:child]];
+    }
+    
+    return contents;
 }
 
 + (void)findNodesFromNode:(GumboNode *)node type:(GumboNodeType)type tag:(GumboTag)tag attributes:(NSDictionary *)attributes block:(void(^)(GumboNode *node, BOOL *stop))block {
