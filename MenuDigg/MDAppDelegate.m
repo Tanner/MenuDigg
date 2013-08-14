@@ -249,8 +249,10 @@
 }
 
 - (IBAction)refresh:(id)sender {
-    [self refreshStories];
-    [self updateStoryMenuItems];
+    dispatch_async(refreshQueue, ^{
+        [self refreshStories];
+        [self updateStoryMenuItems];
+    });
 }
 
 - (IBAction)preferences:(id)sender {
