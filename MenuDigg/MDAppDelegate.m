@@ -94,6 +94,9 @@
     [self updateRefreshMenuItem];
 }
 
+# pragma mark -
+# pragma mark Refresh / Update Interval
+
 - (void)updateIntervalChanged:(NSNotification *)notification {
     [self updateRefreshMenuItem];
     
@@ -154,12 +157,6 @@
     [refreshMenuItem setHidden:updateInterval != MANUALLY];
 }
 
-- (void)menuWillOpen:(NSMenu *)menu {
-    if ([statusItem image] == newStoriesImage) {
-        [statusItem setImage:statusImage];
-    }
-}
-
 - (int)numberOfStories {
     NSInteger numberOfStories = [[NSUserDefaults standardUserDefaults] integerForKey:PreferencesNumberOfStories];
     
@@ -214,23 +211,32 @@
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, refreshQueue);
     
     NSLog(@"Scheduling next refresh in %d seconds", time);
-
+    
     dispatch_time_t startTime = dispatch_time(dispatch_walltime(NULL, 0), time * NSEC_PER_SEC);
     
     dispatch_source_set_timer(timer, startTime, time * NSEC_PER_SEC, 60 * 5 * NSEC_PER_SEC);
     
     dispatch_source_set_event_handler(timer, ^{
         NSLog(@"Refreshing stories from periodic timer...");
-
+        
         [self refreshStories];
-        [self updateStoryMenuItems];        
+        [self updateStoryMenuItems];
     });
     
     dispatch_resume(timer);
 }
 
 # pragma mark -
-# pragma Menu Item Handlers
+# pragma mark NSMenuDelegate
+
+- (void)menuWillOpen:(NSMenu *)menu {
+    if ([statusItem image] == newStoriesImage) {
+        [statusItem setImage:statusImage];
+    }
+}
+
+# pragma mark -
+# pragma mark Menu Item Handlers
 
 - (void)storyMenuItemClicked:(id)sender {
     // Open the story in the user's browser!
