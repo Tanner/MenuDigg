@@ -136,7 +136,15 @@
     
     [storyMenuItems removeAllObjects];
     
-    NSInteger numberOfStories = [self numberOfStories];
+    NSInteger numberOfStories = [stories count];
+    
+    if (numberOfStories == 0) {
+        return;
+    }
+    
+    if (numberOfStories >= [self numberOfStories]) {
+        numberOfStories = [self numberOfStories];
+    }
     
     for (NSInteger i = numberOfStories; i >= 0; i--) {
         MDDiggStory *story = [stories objectAtIndex:i];
